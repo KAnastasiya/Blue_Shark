@@ -3,9 +3,10 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 const imageminPngquant = require('imagemin-pngquant');
-const imageminSvgo = require('imagemin-svgo');
 const webpack = require('webpack-stream');
 const named = require('vinyl-named');
+const buffer = require('vinyl-buffer');
+const merge = require('merge-stream');
 const plugins = require('gulp-load-plugins')();
 
 const SRC = 'src';
@@ -87,18 +88,30 @@ gulp.task('img', () =>
 
 
 // Icons
-gulp.task('icon', () =>
-  gulp
+gulp.task('sprite', () => {
+  const spriteData = gulp
     .src([`${SRC}/blocks/**/icon/*.*`, `${SRC}/common/icon/*.*`])
+    .pipe(plugins.spritesmith({
+      imgName: 'sprite.png',
+      cssName: 'sprite.scss',
+      cssFormat: 'scss',
+      algorithm: 'left-right',
+      padding: 20,
+      cssTemplate: './src/common/scss/sprite-template.scss'
+    }));
+
+  const imgStream = spriteData.img
+    .pipe(buffer())
     .pipe(plugins.imagemin([
-      imageminSvgo({
-        plugins: [
-          { removeViewBox: false }
-        ]
-      })
+      imageminPngquant({quality: '50-80'}),
     ]))
-    .pipe(gulp.dest(`${PUBLIC}/icon`))
-);
+    .pipe(gulp.dest(`${PUBLIC}`));
+
+  const cssStream = spriteData.css
+    .pipe(gulp.dest(`${SRC}/common/scss`));
+
+  return merge(imgStream, cssStream);
+});
 
 
 // Fonts
@@ -111,10 +124,10 @@ gulp.task('fonts', () =>
 
 // Clean
 gulp.task('cleanImg', () => del(`${PUBLIC}/img`));
-gulp.task('cleanIcon', () => del(`${PUBLIC}/icon`));
+gulp.task('cleanSprite', () => del(`${PUBLIC}/sprite.png`));
 gulp.task('cleanFonts', () => del(`${PUBLIC}/fonts`));
 
-gulp.task('clean', gulp.parallel('cleanImg', 'cleanIcon', 'cleanFonts'));
+gulp.task('clean', gulp.parallel('cleanImg', 'cleanSprite', 'cleanFonts'));
 
 
 // Server
@@ -160,7 +173,7 @@ gulp.task('watch', () => {
   gulp.watch([
     `${SRC}/blocks/**/icon/*`,
     `${SRC}/common/icon/*`
-  ]).on('change', gulp.series('cleanIcon', 'icon', browserSync.reload));
+  ]).on('change', gulp.series('cleanSprite', 'sprite', browserSync.reload));
 
   gulp.watch([
     `${SRC}/fonts/**/*`
@@ -171,7 +184,7 @@ gulp.task('watch', () => {
 // Default
 gulp.task('default', gulp.series(
   gulp.parallel('clean'),
-  gulp.parallel('img', 'icon', 'fonts', 'pug', 'scss'),
+  gulp.parallel('img', 'sprite', 'fonts', 'pug', 'scss'),
   gulp.parallel('server', 'watch')
   )
 );
