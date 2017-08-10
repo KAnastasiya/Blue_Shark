@@ -25,17 +25,19 @@
     "gulp-sass": "^3.1.0",
     "gulp-scss": "^1.4.0",
     "gulp-sourcemaps": "^2.4.1",
+    "gulp.spritesmith": "^6.3.0",
     "gulplog": "^1.0.0",
     "imagemin-jpeg-recompress": "^5.1.0",
     "imagemin-pngquant": "^5.0.1",
+    "merge-stream": "^1.0.1",
     "node-normalize-scss": "^3.0.0",
     "stylelint": "^8.0.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-order": "^0.6.0",
     "stylelint-scss": "^1.5.1",
+    "vinyl-buffer": "^1.0.0",
     "vinyl-named": "^1.1.0",
     "webpack": "^3.3.0",
-    "webpack-stream": "^3.2.0",
-    "imagemin-svgo": "^5.2.2"
+    "webpack-stream": "^3.2.0"
   }
 }
