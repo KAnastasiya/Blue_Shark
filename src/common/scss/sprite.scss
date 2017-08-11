@@ -2,27 +2,39 @@
   content: '';
   width: 10px;
   height: 18px;
-  background: url(images/sprite.png) no-repeat 0px 0px;
   display: inline-block;
+  vertical-align: middle;
+  background: url(sprite.png) no-repeat 0px 0px;
 }
 .icon--google {
   content: '';
   width: 16px;
   height: 16px;
-  background: url(images/sprite.png) no-repeat -30px 0px;
   display: inline-block;
+  vertical-align: middle;
+  background: url(sprite.png) no-repeat -30px 0px;
 }
 .icon--pinterest {
   content: '';
   width: 16px;
   height: 20px;
-  background: url(images/sprite.png) no-repeat -66px 0px;
   display: inline-block;
+  vertical-align: middle;
+  background: url(sprite.png) no-repeat -66px 0px;
 }
 .icon--twitter {
   content: '';
   width: 18px;
   height: 15px;
-  background: url(images/sprite.png) no-repeat -102px 0px;
   display: inline-block;
+  vertical-align: middle;
+  background: url(sprite.png) no-repeat -102px 0px;
+}
+.icon--arrow {
+  content: '';
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(sprite.png) no-repeat -140px 0px;
 }

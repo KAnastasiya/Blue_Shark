@@ -1,0 +1,40 @@
+.header {
+  @extend %grid;
+
+  grid-column: span 8;
+
+  &__logo {
+    color: var(--color-primary);
+    grid-column: 2/3;
+
+    @media #{$tablet} {
+      grid-column: 2/4;
+    }
+
+    h1 {
+      line-height: $header-height;
+
+      span {
+        color: var(--color-white);
+      }
+    }
+  }
+
+  &__nav {
+    --border-width: 0;
+
+    color: var(--color-white);
+    line-height: $header-height;
+    text-align: right;
+    grid-column: 3/4;
+    position: relative;
+
+    @media #{$tablet} {
+      grid-column: 4/6;
+    }
+
+    @media #{$desktop--xs} {
+      grid-column: 4/8;
+    }
+  }
+}

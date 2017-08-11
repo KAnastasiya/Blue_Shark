@@ -1,0 +1,12 @@
+%grid {
+  display: grid;
+  grid-template-columns: 1fr repeat(2, minmax(auto, 45%)) 1fr;
+
+  @media #{$tablet} {
+    grid-template-columns: 1fr repeat(4, minmax(auto, 23%)) 1fr;
+  }
+
+  @media #{$desktop--xs} {
+    grid-template-columns: 1fr repeat(6, minmax(auto, 16%)) 1fr;
+  }
+}

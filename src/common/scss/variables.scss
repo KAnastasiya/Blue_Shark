@@ -1,0 +1,25 @@
+$font-size:      14px;
+$font-color:     #333030;
+$line-height:    1.7;
+
+$header-height:  135px;
+
+$tablet:         (min-width: 480px);
+$desktop--xs:    (min-width: 800px);
+$desktop--sm:    (min-width: 1024px);
+$desktop--md:    (min-width: 1210px);
+$desktop--lg:    (min-width: 1400px);
+
+:root {
+  --color-primary: #00aeef;
+  --color-white: #f6eeee;
+
+  --nav-active-border-width: 0;
+  --nav-toggle-icon-top: 60px;
+  --nav-toggle-icon-width: 35px;
+  --nav-toggle-icon-height: 25px;
+  --nav-toggle-line-height: 2px;
+  --nav-tablet-min-width: 200px;
+  --nav-mobile-font-color: $font-color;
+  --nav-mobile-bg-color: #fff;
+}
