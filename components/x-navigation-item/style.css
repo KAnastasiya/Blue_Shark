@@ -1,0 +1,87 @@
+:host a {
+  color: inherit;
+  font-size: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+:host a.active {
+  cursor: default;
+}
+
+:host([layout="tablet"]),
+:host([layout="mobile"]) {
+  display: none;
+  position: relative;
+  top: 40px;
+}
+
+:host([layout="tablet"]) a,
+:host([layout="mobile"]) a {
+  color: var(--nav-mobile-font-color, #000);
+  line-height: 1;
+  text-align: left;
+  display: block;
+  padding: 15px 25px;
+  background-color: var(--nav-mobile-bg-color, rgba(255, 255, 255, 0.9));
+}
+
+:host([layout="tablet"]) a:not(.active):hover,
+:host([layout="mobile"]) a:not(.active):hover {
+  color: var(--color-primary, yellow);
+}
+
+:host([layout="tablet"]) a.active,
+:host([layout="mobile"]) a.active {
+  color: var(--color-primary, yellow);
+  border-left: 5px solid currentColor;
+}
+
+:host([layout="tablet"]) a.icon,
+:host([layout="mobile"]) a.icon {
+  background-image: url() !important;
+}
+
+:host([layout="tablet"][class="visible"]),
+:host([layout="mobile"][class="visible"]) {
+  display: block;
+}
+
+:host([layout="desktop"]) {
+  font-size: 0;
+  display: inline-block;
+  vertical-align: middle;
+  contain: content;
+}
+
+:host([layout="desktop"]) a {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-left: 50px;
+}
+
+:host([layout="desktop"]) a:focus {
+  outline: none;
+}
+
+:host([layout="desktop"]) a:not(.active):hover,
+:host([layout="desktop"]) a:not(.active):focus,
+:host([layout="desktop"]) a.active {
+  color: var(--color-primary, yellow);
+}
+
+:host([layout="desktop"]) a.active {
+  border-bottom: var(--nav-active-border-width, 3px) solid currentColor;
+}
+
+:host([layout="desktop"]) a.icon {
+  font-size: 0;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin-right: 0;
+  margin-left: 40px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}

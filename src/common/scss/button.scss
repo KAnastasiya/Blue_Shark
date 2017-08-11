@@ -1,0 +1,26 @@
+.btn {
+  @include font-size(18px);
+
+  color: var(--color-white);
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  min-width: 50px;
+  padding: 24px 55px;
+  border: none;
+  background-color: var(--color-primary);
+
+  &:hover {
+    box-shadow: 1px 2px 5px #666;
+    cursor: pointer;
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 2px #666;
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-white);
+  }
+}
