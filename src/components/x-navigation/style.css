@@ -37,7 +37,8 @@ x-navigation[layout='mobile'] .toggle {
 
 x-navigation[layout='tablet'] .toggle:focus,
 x-navigation[layout='mobile'] .toggle:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 5px;
 }
 
 .line {

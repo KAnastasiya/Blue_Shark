@@ -13,6 +13,7 @@
 
     h1 {
       line-height: $header-height;
+      white-space: nowrap;
 
       span {
         color: var(--color-white);

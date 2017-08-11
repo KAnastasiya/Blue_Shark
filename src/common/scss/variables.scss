@@ -4,11 +4,11 @@ $line-height:    1.7;
 
 $header-height:  135px;
 
-$tablet:         (min-width: 480px);
-$desktop--xs:    (min-width: 800px);
-$desktop--sm:    (min-width: 1024px);
-$desktop--md:    (min-width: 1210px);
-$desktop--lg:    (min-width: 1400px);
+$tablet:         (min-width: 34em);
+$desktop--xs:    (min-width: 57em);
+$desktop--sm:    (min-width: 73em);
+$desktop--md:    (min-width: 86em);
+$desktop--lg:    (min-width: 100em);
 
 :root {
   --color-primary: #00aeef;
