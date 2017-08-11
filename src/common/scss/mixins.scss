@@ -1,0 +1,19 @@
+@mixin font-size($size, $line-height: $size) {
+  font-size: calculate-rem($size);
+  line-height: $line-height / $size;
+}
+
+@function calculate-rem($size) {
+  $remSize: $size / $font-size;
+
+  @return #{$remSize}rem;
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin square($size) {
+  @include size($size, $size);
+}

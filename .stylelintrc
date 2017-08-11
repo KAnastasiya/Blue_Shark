@@ -10,9 +10,24 @@
     "order/order": [
       "custom-properties",
       "dollar-variables",
+      {
+        type: "at-rule",
+        name: "mixin"
+      },
+      {
+        type: "at-rule",
+        name: "include"
+      },
+      {
+        type: "at-rule",
+        name: "extend"
+      },
       "declarations",
-      "rules",
-      "at-rules"
+      {
+        type: "at-rule",
+        name: "media"
+      },
+      "rules"
     ],
     "order/properties-order": [
       "content",
@@ -89,6 +104,25 @@
       "transition",
       "animation",
       "cursor"
-    ]
+    ],
+    "at-rule-no-unknown": [ true, {
+      ignoreAtRules: [
+        "extend",
+        "at-root",
+        "debug",
+        "warn",
+        "error",
+        "if",
+        "else",
+        "for",
+        "each",
+        "while",
+        "mixin",
+        "include",
+        "content",
+        "return",
+        "function"
+      ]
+    }]
   }
 }

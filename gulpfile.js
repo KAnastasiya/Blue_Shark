@@ -122,12 +122,25 @@ gulp.task('fonts', () =>
 );
 
 
+// Web-components
+gulp.task('components', () =>
+  gulp
+    .src([`${SRC}/components/**/*`])
+    .pipe(gulp.dest(`${PUBLIC}/components`))
+);
+
+
+// Copy all
+gulp.task('copy', gulp.parallel('sprite', 'fonts', 'components'));
+
+
 // Clean
 gulp.task('cleanImg', () => del(`${PUBLIC}/img`));
 gulp.task('cleanSprite', () => del(`${PUBLIC}/sprite.png`));
 gulp.task('cleanFonts', () => del(`${PUBLIC}/fonts`));
+gulp.task('cleanComponents', () => del(`${PUBLIC}/components`));
 
-gulp.task('clean', gulp.parallel('cleanImg', 'cleanSprite', 'cleanFonts'));
+gulp.task('clean', gulp.parallel('cleanImg', 'cleanSprite', 'cleanFonts', 'cleanComponents'));
 
 
 // Server
@@ -140,7 +153,6 @@ gulp.task('server', () => {
     port: 8800,
     open: false,
     reloadOnRestart: true,
-    reloadDelay: 2000,
   });
 });
 
@@ -178,13 +190,17 @@ gulp.task('watch', () => {
   gulp.watch([
     `${SRC}/fonts/**/*`
   ]).on('change', gulp.series('cleanFonts', 'fonts', browserSync.reload));
+
+  gulp.watch([
+    `${SRC}/components/**/*`
+  ]).on('change', gulp.series('cleanComponents', 'components', browserSync.reload));
 });
 
 
 // Default
 gulp.task('default', gulp.series(
-  gulp.parallel('clean'),
-  gulp.parallel('img', 'sprite', 'fonts', 'pug', 'scss'),
+  gulp.parallel('clean', 'sprite'),
+  gulp.parallel('img', 'pug', 'scss', 'copy'),
   gulp.parallel('server', 'watch')
   )
 );
