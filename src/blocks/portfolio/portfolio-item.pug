@@ -1,0 +1,7 @@
+mixin portfolio-item(img, title, text)
+  figure.portfolio__item
+    .portfolio__img
+      img(src='img/portfolio/img/' + img, alt=img)
+    figcaption
+      h4=title
+      p=text

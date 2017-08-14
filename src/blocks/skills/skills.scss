@@ -1,0 +1,33 @@
+.skills {
+  &__item {
+    text-align: center;
+  }
+
+  &__chart {
+    @include square(195px);
+
+    border: 12px solid var(--color-primary);
+    border-radius: 50%;
+    position: relative;
+
+    p {
+      @include font-size(48px, 41px);
+
+      color: #636363;
+      font-weight: 100;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  h3 {
+    @include font-size(24px, 41px);
+
+    color: var(--color-primary);
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 50px 0 0;
+  }
+}

@@ -6,12 +6,12 @@
 @import 'common/scss/mixins';
 
 @import 'common/scss/scaffolding';
-@import 'common/scss/typography';
 @import 'common/scss/grid';
 @import 'common/scss/button';
 
+@import 'blocks/_section/section-title';
 @import 'blocks/home/home';
-// @import 'blocks/about/about';
-// @import 'blocks/skills/skills';
-// @import 'blocks/portfolio/portfolio';
-// @import 'blocks/contact/contact';
+@import 'blocks/about/about';
+@import 'blocks/skills/skills';
+@import 'blocks/portfolio/portfolio';
+@import 'blocks/contact/contact';

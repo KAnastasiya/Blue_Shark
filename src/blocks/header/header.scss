@@ -1,19 +1,33 @@
 .header {
   @extend %grid;
 
-  grid-column: span 8;
+  grid-column: span 4;
+
+  @media #{$desktop--xs} {
+    grid-column: span 6;
+  }
 
   &__logo {
     color: var(--color-primary);
     grid-column: 2/3;
 
-    @media #{$tablet} {
+    @media #{$desktop--xs} {
       grid-column: 2/4;
     }
 
     h1 {
-      line-height: $header-height;
+      @include font-size(30px);
+
+      font-family: Allema;
       white-space: nowrap;
+      line-height: $header-height;
+      margin: 0;
+
+      @media #{$desktop--xs} {
+        @include font-size(39px);
+
+        line-height: $header-height;
+      }
 
       span {
         color: var(--color-white);
@@ -30,12 +44,8 @@
     grid-column: 3/4;
     position: relative;
 
-    @media #{$tablet} {
-      grid-column: 4/6;
-    }
-
     @media #{$desktop--xs} {
-      grid-column: 4/8;
+      grid-column: 4/6;
     }
   }
 }

@@ -1,0 +1,52 @@
+.portfolio {
+  &__item {
+    color: #3d3d3d;
+    text-align: center;
+    flex: 1 1 100%;
+    margin: 0 0 6.4em;
+
+    @media #{$tablet} {
+      flex: 1 1 45%;
+      max-width: 45%;
+
+      &:nth-last-of-type(-n+2) {
+        margin-bottom: 0;
+      }
+    }
+
+    @media #{$desktop--xs} {
+      flex: 1 1 30%;
+      max-width: 30%;
+
+      &:nth-last-of-type(-n+3) {
+        margin-bottom: 0;
+      }
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    h4 {
+      @include font-size(18px);
+
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    figcaption {
+      padding: 40px 0;
+      background-color: #ededed;
+    }
+  }
+
+  &__img {
+    @include size(100%, 19.6em);
+  }
+}

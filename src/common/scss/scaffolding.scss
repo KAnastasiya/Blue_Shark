@@ -24,3 +24,11 @@ img {
   object-fit: cover;
   object-position: 0 0;
 }
+
+p {
+  @include font-size(14px, 24px);
+
+  color: $font-color;
+  font-weight: 400;
+  margin: 0;
+}
