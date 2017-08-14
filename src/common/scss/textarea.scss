@@ -1,0 +1,6 @@
+.textarea {
+  @extend .input;
+
+  resize: none;
+  min-height: 100px;
+}

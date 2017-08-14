@@ -1,4 +1,21 @@
 include ../_section/section-title
 
+a#contact
 section.section.section--contact.contact
-  +section-title('Contact')
+  +section-title(
+    'Contact',
+    'Nullam lacus neque, eleifend eget ante et, efficitu tincidunt nibh. Vestibulum sit amet ligula interdum, sagittis risus.'
+  )
+  .section__content
+    form(action='#', method='POST').form
+      .form__field.form__field--name
+        label(for='user-name').label Your name
+        input(type='text', placeholder='Your name *', required)#user-name.input
+      .form__field.form__field--email
+        label(for='user-email').label Your email
+        input(type='email', placeholder='Your email *', required)#user-email.input
+      .form__field.form__field--message
+        label(for='user-message').label Your message
+        textarea(placeholder='Your message *')#user-message.textarea
+      .form__controls
+        button(type='submit').btn Send message

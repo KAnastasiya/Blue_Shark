@@ -1,0 +1,7 @@
+.label {
+  @include square(1px);
+
+  margin: -1px;
+  position: absolute;
+  clip: rect(0 0 0 0);
+}

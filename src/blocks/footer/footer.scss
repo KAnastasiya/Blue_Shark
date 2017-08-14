@@ -1,0 +1,96 @@
+.footer {
+  @extend %grid;
+
+  text-align: center;
+  grid-column: span 4;
+  padding: 1.4em 0;
+  background-color: var(--color-primary);
+
+  @media #{$tablet} {
+    text-align: left;
+  }
+
+  @media #{$desktop--xs} {
+    grid-column: span 6;
+  }
+
+  p {
+    color: var(--color-white);
+    grid-column: span 4;
+
+    @media #{$tablet} {
+      grid-column: 2/3;
+    }
+
+    @media #{$desktop--xs} {
+      grid-column: 2/4;
+    }
+  }
+}
+
+.socials {
+  $this: &;
+
+  font-size: 0;
+  grid-column: span 4;
+  padding: 0;
+  margin-top: 10px;
+  list-style: none;
+
+  @media #{$tablet} {
+    text-align: right;
+    grid-column: 3/4;
+    margin-top: 0;
+  }
+
+  @media #{$desktop--xs} {
+    grid-column: 4/6;
+  }
+
+  &__item {
+    @each $icon, $color in (twitter: #00aced, facebook: #3b5998, pinterest: #cb2028, google: #da2713) {
+      &--#{$icon} {
+        background-color: $color;
+      }
+
+      #{$this}__link--#{$icon}::before {
+        @extend %icon--#{$icon};
+      }
+    }
+
+    @include square(40px);
+
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+    position: relative;
+
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+  }
+
+  &__link {
+    @include square(20px);
+    @include absolute-centered();
+
+    display: inline-block;
+    vertical-align: middle;
+
+    &::before {
+      @include absolute-centered();
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      opacity: 1;
+    }
+  }
+}

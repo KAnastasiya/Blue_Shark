@@ -66,7 +66,6 @@
 }
 
 :host([layout="desktop"]) a:not(.active):hover,
-:host([layout="desktop"]) a:not(.active):focus,
 :host([layout="desktop"]) a.active {
   color: var(--color-primary, yellow);
 }

@@ -1,17 +1,20 @@
 @import 'normalize';
 
+// Common
 @import 'common/scss/sprite';
 @import 'common/scss/variables';
 @import 'common/scss/fonts';
 @import 'common/scss/mixins';
-
 @import 'common/scss/scaffolding';
 @import 'common/scss/grid';
+@import 'common/scss/form';
 @import 'common/scss/button';
 
+// Componnets (blocks)
 @import 'blocks/_section/section-title';
 @import 'blocks/home/home';
 @import 'blocks/about/about';
 @import 'blocks/skills/skills';
 @import 'blocks/portfolio/portfolio';
 @import 'blocks/contact/contact';
+@import 'blocks/footer/footer';

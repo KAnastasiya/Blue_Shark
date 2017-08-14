@@ -1,3 +1,19 @@
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin square($size) {
+  @include size($size, $size);
+}
+
+@mixin absolute-centered() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
 @mixin font-size($size, $line-height: $size) {
   font-size: calculate-rem($size);
   line-height: $line-height / $size;
@@ -7,13 +23,4 @@
   $remSize: $size / $font-size;
 
   @return #{$remSize}rem;
-}
-
-@mixin size($width, $height) {
-  width: $width;
-  height: $height;
-}
-
-@mixin square($size) {
-  @include size($size, $size);
 }

@@ -1,0 +1,25 @@
+.form {
+  display: grid;
+  grid-row-gap: 20px;
+  width: 100%;
+
+  @media #{$desktop--xs} {
+    justify-content: space-between;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(2, 50%);
+    grid-column: span 6;
+    grid-column-gap: 20px;
+
+    .textarea {
+      height: 100%;
+    }
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@import './label';
+@import './input';
+@import './textarea';
