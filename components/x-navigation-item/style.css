@@ -57,8 +57,7 @@
 :host([layout="desktop"]) a {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 10px;
-  margin-left: 50px;
+  margin-left: 30px;
 }
 
 :host([layout="desktop"]) a:focus {

@@ -1,8 +1,51 @@
 @font-face {
-  font-family: 'LatoLight';
+  font-family: 'Allema';
+  src:
+    local(Allema),
+    url('fonts/Allema.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: optional;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src:
+    local(LatoLatinBold),
+    local(LatoBold),
+    local('Lato Latin Bold'),
+    local('Lato Bold'),
+    url('fonts/LatoLatin-Bold.woff2') format('woff2'),
+    url('fonts/LatoLatin-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: optional;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src:
+    local(LatoLatinHairline),
+    local(LatoHairline),
+    local('Lato Latin Hairline'),
+    local('Lato Hairline'),
+    url('fonts/LatoLatin-Hairline.woff2') format('woff2'),
+    url('fonts/LatoLatin-Hairline.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: optional;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
   src:
     local(LatoLatinLight),
-    local('LatoLatin-Light'),
+    local(LatoLight),
+    local('Lato Latin Light'),
+    local('Lato Light'),
     url('fonts/LatoLatin-Light.woff2') format('woff2'),
     url('fonts/LatoLatin-Light.woff') format('woff');
   font-weight: 300;
@@ -14,21 +57,10 @@
 @font-face {
   font-family: 'Lato';
   src:
-    local(LatoLatinRegular),
-    local('LatoLatin-Regular'),
-    url('fonts/LatoLatin-Regular.woff2') format('woff2'),
-    url('fonts/LatoLatin-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: optional;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: 'LatoMediumItalic';
-  src:
     local(LatoLatinMediumItalic),
-    local('LatoLatin-MediumItalic'),
+    local(LatoMediumItalic),
+    local('Lato Latin MediumItalic'),
+    local('Lato MediumItalic'),
     url('fonts/LatoLatin-MediumItalic.woff2') format('woff2'),
     url('fonts/LatoLatin-Medium.woff') format('woff');
   font-weight: 500;
@@ -38,24 +70,15 @@
 }
 
 @font-face {
-  font-family: 'LatoHeavy';
+  font-family: 'Lato';
   src:
-    local(LatoLatinHeavy),
-    local('LatoLatin-Heavy'),
-    url('fonts/LatoLatin-Heavy.woff2') format('woff2'),
-    url('fonts/LatoLatin-Heavy.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: optional;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: 'Allema';
-  src:
-    local(Allema),
-    url('fonts/Allema.ttf') format('truetype');
-  font-weight: normal;
+    local(LatoLatinRegular),
+    local(LatoRegular),
+    local('Lato Latin Regular'),
+    local('Lato Regular'),
+    url('fonts/LatoLatin-Regular.woff2') format('woff2'),
+    url('fonts/LatoLatin-Regular.woff') format('woff');
+  font-weight: 400;
   font-style: normal;
   font-display: optional;
   text-rendering: optimizeLegibility;

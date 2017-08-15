@@ -4,11 +4,18 @@ $line-height:    1.7;
 
 $header-height:  135px;
 
-$tablet:         (min-width: 34em);
-$desktop--xs:    (min-width: 57em);
-$desktop--sm:    (min-width: 73em);
-$desktop--md:    (min-width: 86em);
-$desktop--lg:    (min-width: 100em);
+$bp-mobile:         23em;  // 320px
+$bp-tablet:         34em;  // 476px (544px)
+$bp-desktop--xs:    57em;  // 798px (912px)
+$bp-desktop--sm:    73em;  // 1022px (1024px)
+$bp-desktop--md:    86em;  // 1204px
+$bp-desktop--lg:    100em; // 1400px
+
+$tablet:         (min-width: $bp-tablet);
+$desktop--xs:    (min-width: $bp-desktop--xs);
+$desktop--sm:    (min-width: $bp-desktop--sm);
+$desktop--md:    (min-width: $bp-desktop--md);
+$desktop--lg:    (min-width: $bp-desktop--lg);
 
 :root {
   --color-primary: #00aeef;

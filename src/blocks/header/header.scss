@@ -11,10 +11,6 @@
     color: var(--color-primary);
     grid-column: 2/3;
 
-    @media #{$desktop--xs} {
-      grid-column: 2/4;
-    }
-
     h1 {
       @include font-size(30px);
 
@@ -45,7 +41,7 @@
     position: relative;
 
     @media #{$desktop--xs} {
-      grid-column: 4/6;
+      grid-column: 3/6;
     }
   }
 }

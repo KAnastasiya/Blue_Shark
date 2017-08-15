@@ -9,11 +9,11 @@
     display: flex;
     justify-content: center;
     grid-column: 2/4;
-    padding-top: 2.4em;
+    padding-top: 2.3em;
     padding-bottom: 5em;
 
     @media #{$desktop--xs} {
-      @include font-size(36px, 40px);
+      @include font-size(48px, 54px);
 
       justify-content: flex-end;
       grid-column: 2/6;
@@ -32,13 +32,13 @@
       font-size: 1em;
       font-weight: 300;
       line-height: inherit;
+      margin-bottom: 0.1em;
 
       &:last-of-type {
         color: var(--color-primary);
         font-size: 1.5em;
         font-weight: 700;
         text-transform: uppercase;
-        margin-bottom: 0.4em;
       }
     }
 

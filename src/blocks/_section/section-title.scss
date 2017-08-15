@@ -3,7 +3,11 @@
 
   &:not(.home) {
     grid-template-rows: auto auto;
-    padding: 6.4em 0 7.9em;
+    padding: 4.4em 0;
+
+    @media #{$desktop--xs} {
+      padding: 6.4em 0 6.5em;
+    }
   }
 
   &__title {
@@ -52,7 +56,8 @@
     }
 
     p {
-      margin-top: 2.9em;
+      margin-top: 2.5em;
+      margin-bottom: 2.4em;
     }
   }
 
@@ -62,7 +67,7 @@
     justify-content: space-between;
     grid-row: 2/3;
     grid-column: 2/4;
-    padding-top: 5.7em;
+    padding-top: 0.7em;
 
     @media #{$desktop--xs} {
       grid-column: 2/6;

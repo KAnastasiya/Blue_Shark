@@ -3,7 +3,7 @@
   const componentTemplate = componentDocument.querySelector('template').content;
 
   window.XChart = class XChart extends HTMLElement {
-    constructor(svgSize = 195, strokeWidth = 12) {
+    constructor(svgSize = 230, strokeWidth = 12) {
       super();
       this.attachShadow({ mode: 'open' });
 

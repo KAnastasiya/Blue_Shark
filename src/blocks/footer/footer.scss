@@ -69,6 +69,11 @@
     &:not(:last-of-type) {
       margin-right: 0.7em;
     }
+
+    &:focus-within {
+      border: 2px solid var(--color-white);
+      border-radius: 50%;
+    }
   }
 
   &__link {
