@@ -3,7 +3,7 @@
 
   &:not(.home) {
     grid-template-rows: auto auto;
-    padding: 90px 0 110px;
+    padding: 6.4em 0 7.9em;
   }
 
   &__title {
@@ -23,31 +23,36 @@
       white-space: nowrap;
       text-transform: uppercase;
       text-align: center;
-      margin: 0 0 40px;
+      margin: 0;
       position: relative;
 
-      @media #{$desktop--xs} {
+      @media #{$tablet} {
         @include font-size(48px);
       }
 
       &::after {
-        @include font-size(60px);
+        display: none;
 
-        content: attr(val);
-        color: #bebbbb;
-        font-weight: 700;
-        opacity: 0.38;
-        white-space: nowrap;
-        text-transform: uppercase;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        @media #{$desktop--xs} {
+        @media #{$tablet} {
           @include font-size(80px);
+
+          content: attr(val);
+          color: #bebbbb;
+          font-weight: 700;
+          opacity: 0.38;
+          white-space: nowrap;
+          text-transform: uppercase;
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
       }
+    }
+
+    p {
+      margin-top: 2.9em;
     }
   }
 
@@ -57,7 +62,7 @@
     justify-content: space-between;
     grid-row: 2/3;
     grid-column: 2/4;
-    padding-top: 80px;
+    padding-top: 5.7em;
 
     @media #{$desktop--xs} {
       grid-column: 2/6;

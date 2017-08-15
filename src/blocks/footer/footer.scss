@@ -17,6 +17,7 @@
   p {
     color: var(--color-white);
     grid-column: span 4;
+    padding: 0.7em 0;
 
     @media #{$tablet} {
       grid-column: 2/3;
@@ -34,7 +35,6 @@
   font-size: 0;
   grid-column: span 4;
   padding: 0;
-  margin-top: 10px;
   list-style: none;
 
   @media #{$tablet} {
@@ -58,6 +58,7 @@
       }
     }
 
+    @include font-size(14px);
     @include square(40px);
 
     display: inline-block;
@@ -66,7 +67,7 @@
     position: relative;
 
     &:not(:last-of-type) {
-      margin-right: 10px;
+      margin-right: 0.7em;
     }
   }
 

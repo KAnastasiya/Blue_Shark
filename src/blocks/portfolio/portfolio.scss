@@ -31,18 +31,29 @@
       @include font-size(18px);
 
       font-weight: 700;
-      margin: 0 0 16px;
+      margin: 0 0 1.2em;
     }
 
     p {
-      font-size: 14px;
+      @include font-size(14px);
+
       font-weight: 500;
       font-style: italic;
     }
 
     figcaption {
-      padding: 40px 0;
+      padding: 2.9em 0;
       background-color: #ededed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-skip: ink;
+      }
     }
   }
 
