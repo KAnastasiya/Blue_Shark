@@ -1,43 +1,35 @@
 .portfolio {
   .section__content {
-    justify-content: flex-start;
+    @media #{$tablet} {
+      justify-content: flex-start;
+    }
   }
 
   &__item {
-    color: #3d3d3d;
     text-align: center;
     flex: 1 1 auto;
     margin: 2rem 0 0;
 
     @media #{$tablet} {
       max-width: 47%;
-      margin-right: 2rem;
 
-      &:nth-of-type(2n) {
-        margin-right: 0;
-      }
-
-      &:last-of-type {
-        margin-right: 0;
+      &:nth-of-type(odd) {
+        margin-right: 2rem;
       }
     }
 
-    @media #{$desktop--xs} {
-      max-width: 31%;
+    @media #{$desktop--sm} {
+      max-width: 30%;
 
-      &:nth-of-type(2n) {
+      &:not(:nth-of-type(3n)) {
         margin-right: 2rem;
-      }
-
-      &:nth-of-type(3n) {
-        margin-right: 0;
       }
     }
 
     @media #{$desktop--lg} {
       max-width: 18%;
 
-      &:nth-of-type(3n) {
+      &:not(:nth-of-type(5n)) {
         margin-right: 2rem;
       }
     }
@@ -58,7 +50,7 @@
 
     figcaption {
       padding: 2.9rem 0;
-      background-color: #ededed;
+      background-color: $portfolio-card-bg;
     }
 
     a {

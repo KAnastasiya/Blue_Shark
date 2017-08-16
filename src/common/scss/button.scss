@@ -1,7 +1,7 @@
 .btn {
   @include font-size(18px);
 
-  color: var(--color-white);
+  color: $color-white;
   font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
@@ -20,6 +20,6 @@
   }
 
   &:focus {
-    outline: 2px solid var(--color-white);
+    outline: 2px solid $color-white;
   }
 }
