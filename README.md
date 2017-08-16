@@ -2,7 +2,7 @@
 
 Portfolio templates
 
-**Attention!** *In this project I use Web Components, Custom properties, Css Grid and others modern technologies. Thats why, unfortunately, now this site work only in Google Chrome :-(*
+**Attention!** *In this project I use Web Components, Custom properties, Css Grid and others modern technologies. Thats why, unfortunately, now this site work only in Google Chrome and Opera :-(*
 
 
 ### Installation
