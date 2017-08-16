@@ -131,7 +131,7 @@ gulp.task('components', () =>
 
 
 // Copy all
-gulp.task('copy', gulp.parallel('sprite', 'fonts', 'components'));
+gulp.task('copy', gulp.parallel('fonts', 'components'));
 
 
 // Clean
