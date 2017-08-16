@@ -1,7 +1,13 @@
 .home {
-  background: url(img/home/img/bg.jpg) no-repeat 0 0;
+  background-image: url(img/home/img/bg.jpg);
+  background-repeat: no-repeat;
+  background-position: -120px 0;
   background-size: cover;
   position: relative;
+
+  @media #{$desktop--sm} {
+    background-position: 0 0;
+  }
 
   &__content {
     @include font-size(20px, 25px);
@@ -10,7 +16,7 @@
     justify-content: center;
     grid-column: 2/4;
     padding-top: 8rem;
-    padding-bottom: 17rem;
+    padding-bottom: 14rem;
 
     @media #{$desktop--xs} {
       @include font-size(48px, 54px);
