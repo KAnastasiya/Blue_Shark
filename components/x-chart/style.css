@@ -29,7 +29,6 @@ svg {
 
 circle {
   stroke: var(--color-chart, #eee);
-  stroke-width: 10;
   transform: rotate(-90deg);
   fill: rgba(0, 0, 0, 0);
 }
