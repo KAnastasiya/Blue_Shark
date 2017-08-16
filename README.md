@@ -18,6 +18,11 @@ Portfolio templates
 2. Open url `http://localhost:8800` in your browser.
 
 
+### Utils
+
+- `npm run update:packages` - update all npm packages in package.json.
+
+
 ### Demo
 
 If you want see, how site look like, click [this link](http://kanastasiya.github.io/BLUE_SHARK)
