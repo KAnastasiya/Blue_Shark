@@ -1,4 +1,4 @@
-# BLUE SHARK
+# Blue Shark
 
 Portfolio templates
 
@@ -25,4 +25,4 @@ Portfolio templates
 
 ### Demo
 
-If you want see, how site look like, click [this link](http://kanastasiya.github.io/BLUE_SHARK)
+If you want see, how site look like, click [this link](https://kanastasiya.github.io/Blue_Shark/)
