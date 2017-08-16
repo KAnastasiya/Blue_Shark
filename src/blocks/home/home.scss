@@ -9,8 +9,8 @@
     display: flex;
     justify-content: center;
     grid-column: 2/4;
-    padding-top: 2.3em;
-    padding-bottom: 5em;
+    padding-top: 8rem;
+    padding-bottom: 17rem;
 
     @media #{$desktop--xs} {
       @include font-size(48px, 54px);

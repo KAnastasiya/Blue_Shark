@@ -15,8 +15,8 @@
       @include font-size(30px);
 
       font-family: Allema;
-      white-space: nowrap;
       line-height: $header-height;
+      white-space: nowrap;
       margin: 0;
 
       @media #{$desktop--xs} {

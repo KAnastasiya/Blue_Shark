@@ -3,10 +3,10 @@
 
   &:not(.home) {
     grid-template-rows: auto auto;
-    padding: 4.4em 0;
+    padding: 4.4rem 0;
 
     @media #{$desktop--xs} {
-      padding: 6.4em 0 6.5em;
+      padding: 6.4rem 0 6.5rem;
     }
   }
 
@@ -64,10 +64,10 @@
   &__content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     grid-row: 2/3;
     grid-column: 2/4;
-    padding-top: 0.7em;
+    padding-top: 0.7rem;
 
     @media #{$desktop--xs} {
       grid-column: 2/6;

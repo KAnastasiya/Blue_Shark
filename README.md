@@ -2,6 +2,8 @@
 
 Portfolio templates
 
+**Attention!** *In this project I use Web Components, Custom properties, Css Grid and others modern technologies. Thats why, unfortunately, now this site work only in Google Chrome :-(*
+
 
 ### Installation
 
@@ -12,8 +14,8 @@ Portfolio templates
 ### Getting started
 
 1. Build and run local-server with client-side part of service.
-*Run `gulp` in catalog with source code (to produce development version and run a watcher at localhost:3000)*.
-2. Open url `http://localhost:3000` in your browser.
+*Run `gulp` in catalog with source code (to produce development version and run a watcher at localhost:8800)*.
+2. Open url `http://localhost:8800` in your browser.
 
 
 ### Demo

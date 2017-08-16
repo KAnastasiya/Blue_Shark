@@ -1,11 +1,15 @@
 .about {
   &__item {
     flex: 1 1 100%;
-    margin-bottom: 2.6em;
+    margin-bottom: 2.6rem;
 
     @media #{$desktop--xs} {
       flex: 1 1 45%;
       max-width: 45%;
+
+      &:nth-of-type(2n+1) {
+        margin-right: 3.6rem;
+      }
 
       &:nth-last-of-type(-n+2) {
         margin-bottom: 0;

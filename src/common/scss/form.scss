@@ -1,6 +1,8 @@
 .form {
+  $gap: 1.4rem;
+
   display: grid;
-  grid-row-gap: 1.4em;
+  grid-row-gap: $gap;
   width: 100%;
 
   @media #{$desktop--xs} {
@@ -8,7 +10,7 @@
     grid-template-rows: repeat(3, auto);
     grid-template-columns: repeat(2, 50%);
     grid-column: span 6;
-    grid-column-gap: 1.4em;
+    grid-column-gap: $gap;
 
     .textarea {
       height: 100%;

@@ -1,11 +1,17 @@
 .skills {
   x-chart {
     flex: 1 1;
-    padding-top: 2em;
-    margin-bottom: 2em;
+    min-width: 150px;
+    max-width: 230px;
+    margin: 2rem 0;
 
     @media #{$desktop--xs} {
+      margin-right: 1.7rem;
       margin-bottom: 0;
+
+      &:nth-last-of-type(-n+1) {
+        margin-right: 0;
+      }
     }
 
     &:last-of-type {

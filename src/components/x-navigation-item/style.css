@@ -62,6 +62,8 @@
 
 :host([layout="desktop"]) a:focus {
   outline: none;
+  text-decoration: underline;
+  text-decoration-skip: ink;
 }
 
 :host([layout="desktop"]) a:not(.active):hover,
