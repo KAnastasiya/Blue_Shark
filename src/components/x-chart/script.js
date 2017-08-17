@@ -10,10 +10,14 @@
       this.chart = componentTemplate.querySelector('.chart');
       this.svg = this.chart.querySelector('svg');
 
-      this.chart.querySelector('h3').innerHTML = this.innerHTML;
+      this.chart.querySelector('p').innerHTML = this.innerHTML;
 
       const percent = this.getAttribute('percent');
-      this.svg.querySelector('text').innerHTML = percent;
+      const text = this.svg.querySelector('text');
+      const textX = (percent.length === 4) ? '25' : (percent.length === 3) ? '40' : '55';
+
+      text.innerHTML = percent;
+      text.setAttribute('x', textX);
 
       const circleList = this.svg.querySelectorAll('circle');
       const strokeWidth = this.getAttribute('stroke-width');
@@ -22,9 +26,9 @@
         Array.from(circleList).forEach(circle => circle.setAttribute('stroke-width', strokeWidth));
       }
 
-      const circumference = 465; // PI * 2R
-      const circleStrokeDasharray = parseFloat(percent) * circumference / 100;
-      circleList[1].setAttribute('stroke-dasharray', circleStrokeDasharray);
+      const circumference = 439.6; // PI * 2R
+      const circleStrokeDasharray = (parseFloat(percent) * circumference) / 100; // (X% * circumference) / 100%
+      circleList[1].setAttribute('stroke-dasharray', `${circleStrokeDasharray} ${circumference - circleStrokeDasharray}`);
 
       this.shadowRoot.appendChild(componentTemplate.cloneNode(true));
     }

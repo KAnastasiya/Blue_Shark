@@ -2,6 +2,13 @@
   background-color: $skills-bg;
 
   x-chart {
+    --chart-full-color-stroke: #eee;
+    --chart-color-stroke: var(--color-primary);
+    --chart-title-color: var(--color-primary);
+    --chart-title-margin-top: 20px;
+
+    display: inline-block;
+    vertical-align: top;
     flex: 0 1;
     min-width: 230px;
     margin: 2rem 0.6rem;

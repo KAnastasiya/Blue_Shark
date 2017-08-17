@@ -1,4 +1,6 @@
 :host {
+  font-size: inherit;
+  text-transform: uppercase;
   text-align: center;
   min-width: 100px;
   max-width: 160px;
@@ -6,6 +8,7 @@
 
 .chart {
   display: inline-block;
+  vertical-align: top;
   width: 100%;
 }
 
@@ -13,13 +16,15 @@
   position: relative;
 }
 
-h3 {
-  color: var(--color-primary);
-  font-size: 1.7rem;
+p {
+  color: var(--chart-title-color, yellow);
+  font-size: 1.7em;
   font-weight: 400;
-  line-height: 41px;
-  text-transform: uppercase;
-  margin: 20px 0 0;
+  margin: 0;
+}
+
+p:not(:empty) {
+  margin-top: var(--chart-title-margin-top, 0);
 }
 
 svg {
@@ -28,17 +33,21 @@ svg {
 }
 
 circle {
-  stroke: var(--color-chart, #eee);
   transform: rotate(-90deg);
-  fill: rgba(0, 0, 0, 0);
 }
 
-circle:nth-of-type(2n) {
-  stroke: var(--color-primary, yellow);
+circle:first-of-type {
+  fill: var(--chart-color-fill, transparent);
+  stroke: var(--chart-full-color-stroke, #eee);
+}
+
+circle:last-of-type {
+  fill: transparent;
+  stroke: var(--chart-color-stroke, yellow);
 }
 
 text {
-  color: var(--skills-chart-font-color, #666);
+  fill: var(--chart-percent-color, #666);
   font-family: inherit;
   font-size: 48px;
   font-weight: 100;
