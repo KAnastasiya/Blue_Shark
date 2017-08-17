@@ -21,6 +21,7 @@ x-navigation[layout='mobile'] {
 
 x-navigation[layout='mobile'] {
   --nav-min-width: 100%;
+
   left: 0;
 }
 
