@@ -1,160 +1,184 @@
-(function () {
-  const getCurrentScrollPosition = () => {
-    let position;
-    if (window.pageYOffset) {
-      position = window.pageYOffset;
-    } else if (document.documentElement && document.documentElement.scrollTop) {
-      position = document.documentElement.scrollTop;
-    } else if (document.body) {
-      position = document.body.scrollTop;
+(function() {
+  class XNavigation extends HTMLElement {
+    static get observedAttributes() {
+      return ['mobile'];
     }
 
-    return Math.ceil(position);
-  };
-
-  const debounce = (func, wait, immediate) => {
-    let timeout;
-    return function () {
-      const callNow = immediate && !timeout;
-
-      const later = () => {
-        timeout = null;
-        if (!immediate) {
-          func.apply(this, arguments);
-        }
-      };
-
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) {
-        func.apply(this, arguments);
-      }
-    };
-  };
-
-  const componentDocument = document.currentScript.ownerDocument;
-  const componentTemplate = componentDocument.querySelector('template').content;
-
-  window.XNavigation = class XNavigation extends HTMLElement {
     constructor() {
       super();
-      this.appendChild(componentTemplate.cloneNode(true));
-
-      this.toggleIcon = this.querySelector('a');
-      this.items = Array.from(this.querySelectorAll('x-navigation-item'));
-
-      this.items.forEach(item => {
-        if (item.hasAttribute('selected')) {
-          item.shadowRoot.querySelector('a').classList.add('active');
-        }
-      });
-
-      this.onToggleClick = this.onToggleClick.bind(this);
-      this.onItemClick = this.onItemClick.bind(this);
-      this.onPageScroll = this.onPageScroll.bind(this);
-      this.onPageResize = this.onPageResize.bind(this);
-      this.onDocumentClick = this.onDocumentClick.bind(this);
-
-      this.toggleIcon.addEventListener('click', this.onToggleClick);
-      this.addEventListener('click', this.onItemClick);
-      window.addEventListener('scroll', debounce(this.onPageScroll, 300));
-      window.addEventListener('resize', this.onPageResize);
-      document.addEventListener('click', this.onDocumentClick);
-
-      this.onPageResize();
+      const shadowRoot = this.attachShadow({ mode: 'open' });
+      const doc = document.currentScript.ownerDocument;
+      const temp = doc.querySelector('template');
+      const instance = temp.content.cloneNode(true);
+      shadowRoot.appendChild(instance);
     }
 
-    chooseItem(item) {
+    connectedCallback() {
+      this.childTagName = 'x-navigation-item';
+      this.maxMobileWidth = 1210; // px
+      this.addEventListener('change', this.onChange);
+
+      Promise.all([customElements.whenDefined(this.childTagName)]).then(() => {
+        if (!this.selectedItem) {
+          this.items[0].selected = true;
+        }
+        this.onResize();
+      });
+
+      this.shadowRoot.querySelector('.toggle').addEventListener('click', this.onToggleClick.bind(this));
+      window.addEventListener('scroll', this.constructor.debounce(this.onScroll.bind(this), 300));
+      window.addEventListener('resize', this.onResize.bind(this));
+      document.addEventListener('click', this.onDocumentClick.bind(this));
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener('change', this.onChange);
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+      this.items.map(elem => {
+        const item = elem;
+        return (item.mobile = !!newVal);
+      });
+    }
+
+    hide() {
+      this.opened = false;
+    }
+
+    unselectAll() {
       this.items.forEach(elem => {
-        if (elem.hasAttribute('selected')) {
-          elem.removeAttribute('selected');
-          elem.shadowRoot.querySelector('a').classList.remove('active');
-        }
+        const item = elem;
+        item.selected = false;
       });
-
-      item.setAttribute('selected', 'true');
-      item.shadowRoot.querySelector('a').classList.add('active');
-
-      const hash = `#${item.getAttribute('value')}`;
-      history.replaceState({ page: `${hash}` }, '', `${hash}`);
     }
 
-    setPageSizeMode(mode) {
-      this.setAttribute('layout', mode);
-      this.items.map(item => item.setAttribute('layout', mode));
+    select(item) {
+      this.unselectAll();
+      this.constructor.selectItem(item);
     }
 
-    hideMenu() {
-      this.toggleIcon.classList.remove('active');
-      this.items.map(item => item.classList.remove('visible'));
+    scroll() {
+      const body = document.body;
+      const position = this.constructor.getScrollPosition();
+      const targetOffset = document.querySelector(`#${event.target.getAttribute('value')}`).offsetTop;
+      const scrollTranslate = targetOffset > position ? `-${targetOffset - position}` : position - targetOffset;
+
+      body.style.transition = 'transform 1000ms ease';
+      body.style.transform = `translate(0, ${scrollTranslate}px)`;
+
+      window.setTimeout(() => {
+        body.style.cssText = '';
+        window.scrollTo(0, targetOffset);
+      }, 900);
+    }
+
+    onChange(event) {
+      this.select(event.target);
+      this.scroll();
     }
 
     onToggleClick() {
-      this.toggleIcon.classList.toggle('active');
-      this.items.map(item => item.classList.toggle('visible'));
+      this.opened = !this.opened;
     }
 
-    onItemClick(event) {
-      if (event.target.tagName === 'X-NAVIGATION-ITEM' && !event.target.hasAttribute('selected')) {
-        event.preventDefault();
+    onScroll() {
+      this.hide();
 
-        if (!event.target.hasAttribute('icon')) {
-          const body = document.body;
-          const element = event.target;
-          const position = getCurrentScrollPosition();
-          const href = `#${element.getAttribute('value')}`;
+      const scrolled = this.items
+        .map(item => item.getAttribute('value'))
+        .filter(item => document.querySelector(`#${item}`).offsetTop <= this.constructor.getScrollPosition());
 
-          const targetOffset = document.querySelector(href).offsetTop;
-          const scrollTranslate = (targetOffset > position) ? `-${targetOffset - position}` : (position - targetOffset);
+      const current = scrolled[scrolled.length - 1] || this.items[0].getAttribute('value');
 
-          body.classList.add('in-transition');
-          body.style.transform = `translate(0, ${scrollTranslate}px)`;
-
-          window.setTimeout(() => {
-            body.classList.remove('in-transition');
-            body.style.cssText = '';
-            window.scrollTo(0, targetOffset);
-            this.chooseItem(element);
-          }, 900);
-        }
-      }
-    }
-
-    onPageScroll() {
-      this.hideMenu();
-
-      const scrollItemsList = this.items
-        .map(item => {
-          const itemValue = item.getAttribute('value');
-          return !item.getAttribute('icon') ? itemValue : null;
-        })
-        .filter(item => item && (document.querySelector(`#${item}`).offsetTop <= getCurrentScrollPosition()));
-
-      const currentItemId = scrollItemsList[scrollItemsList.length - 1] || this.items[0].getAttribute('value');
       this.items.forEach(item => {
-        if (item.getAttribute('value') === currentItemId) {
-          this.chooseItem(item);
+        if (item.getAttribute('value') === current) {
+          this.select(item);
         }
       });
     }
 
-    onPageResize() {
-      if (window.matchMedia('(min-width: 480px)').matches && window.matchMedia('(max-width: 1023px)').matches) {
-        this.setPageSizeMode('tablet');
-      } else if (window.matchMedia('(min-width: 1024px)').matches) {
-        this.setPageSizeMode('desktop');
+    onResize() {
+      if (window.matchMedia(`(max-width: ${this.maxMobileWidth}px)`).matches) {
+        this.mobile = true;
       } else {
-        this.setPageSizeMode('mobile');
+        this.mobile = false;
       }
     }
 
     onDocumentClick(event) {
       event.stopPropagation();
       if (!event.target.closest('x-navigation')) {
-        this.hideMenu();
+        this.hide();
       }
     }
-  };
 
-  window.customElements.define('x-navigation', window.XNavigation);
-}());
+    get items() {
+      return Array.from(this.querySelectorAll(this.childTagName));
+    }
+
+    get opened() {
+      return this.hasAttribute('opened');
+    }
+
+    get selectedItem() {
+      return this.items.find(item => item.hasAttribute('selected'));
+    }
+
+    set mobile(value) {
+      if (value) {
+        this.setAttribute('mobile', true);
+      } else {
+        this.removeAttribute('mobile');
+      }
+    }
+
+    set opened(value) {
+      if (value) {
+        this.setAttribute('opened', true);
+      } else {
+        this.removeAttribute('opened');
+      }
+    }
+
+    static selectItem(elem) {
+      const item = elem;
+      item.selected = true;
+    }
+
+    static getScrollPosition() {
+      let position;
+      if (window.pageYOffset) {
+        position = window.pageYOffset;
+      } else if (document.documentElement && document.documentElement.scrollTop) {
+        position = document.documentElement.scrollTop;
+      } else if (document.body) {
+        position = document.body.scrollTop;
+      }
+
+      return Math.ceil(position);
+    }
+
+    static debounce(func, wait, immediate) {
+      let timeout;
+      return function(...args) {
+        const callNow = immediate && !timeout;
+
+        const later = () => {
+          timeout = null;
+          if (!immediate) {
+            func.apply(this, args);
+          }
+        };
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) {
+          func.apply(this, args);
+        }
+      };
+    }
+  }
+
+  window.customElements.define('x-navigation', XNavigation);
+})();

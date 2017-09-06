@@ -5,7 +5,7 @@
     url('fonts/Allema.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
   text-rendering: optimizeLegibility;
 }
 
@@ -20,7 +20,7 @@
     url('fonts/LatoLatin-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
   text-rendering: optimizeLegibility;
 }
 
@@ -35,7 +35,7 @@
     url('fonts/LatoLatin-Hairline.woff') format('woff');
   font-weight: 100;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
   text-rendering: optimizeLegibility;
 }
 
@@ -50,7 +50,7 @@
     url('fonts/LatoLatin-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
   text-rendering: optimizeLegibility;
 }
 
@@ -65,7 +65,7 @@
     url('fonts/LatoLatin-Medium.woff') format('woff');
   font-weight: 500;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
   text-rendering: optimizeLegibility;
 }
 
@@ -80,6 +80,6 @@
     url('fonts/LatoLatin-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
   text-rendering: optimizeLegibility;
 }

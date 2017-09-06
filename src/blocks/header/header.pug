@@ -6,9 +6,9 @@ header.header
         | Shark
   .header__nav
     x-navigation
-      x-navigation-item(value='home', selected) Home
-      x-navigation-item(value='about') About
-      x-navigation-item(value='skills') Skills
-      x-navigation-item(value='portfolio') Portfolio
-      x-navigation-item(value='contact') Contact
+      x-navigation-item(value='home', slot='item', selected) Home
+      x-navigation-item(value='about', slot='item') About
+      x-navigation-item(value='skills', slot='item') Skills
+      x-navigation-item(value='portfolio', slot='item') Portfolio
+      x-navigation-item(value='contact', slot='item') Contact
 

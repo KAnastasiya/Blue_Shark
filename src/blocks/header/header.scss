@@ -32,16 +32,28 @@
   }
 
   &__nav {
-    --border-width: 0;
-
     color: $color-white;
     line-height: $header-height;
     text-align: right;
+    height: $header-height;
     grid-column: 3/4;
     position: relative;
 
     @media #{$desktop--xs} {
       grid-column: 3/6;
+    }
+
+    x-navigation {
+      --nav-font-color: $color-white;
+      --nav-current-color: var(--color-primary);
+      --nav-current-border-width: 0;
+      --nav-mobile-top: 50%;
+      --nav-mobile-right: 0;
+      --nav-mobile-left: initial;
+      --nav-toggle-margins: 0 0 0 auto;
+      --nav-mobile-bg: $color-white;
+      --nav-mobile-font-color: $font-color;
+      --nav-toggle-color: var(--color-primary);
     }
   }
 }

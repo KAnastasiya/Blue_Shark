@@ -1,52 +1,92 @@
-x-navigation[layout='desktop'] {
-  position: relative;
+:host {
+  --nav-mobile-top: 0;
+  --nav-mobile-right: initial;
+  --nav-mobile-bottom: initial;
+  --nav-mobile-left: 0;
+  --nav-toggle-margins: 0 auto 0 0;
+  --nav-mobile-min-width: 0;
+  --nav-mobile-bg: #fff;
+  --nav-toggle-width: 30px;
+  --nav-toggle-height: calc(var(--nav-toggle-width) - 4px);
+  --nav-toggle-color: #95e1d3;
+  --nav-toggle-focus-color: var(--nav-toggle-color);
+  --nav-toggle-line-height: 3px;
+  --nav-font-color: #000;
+  --nav-current-color: #95e1d3;
+  --nav-current-border-width: 3px;
+  --nav-hover-color: var(--nav-current-color);
+  --nav-mobile-font-color: var(--nav-font-color);
+  --nav-mobile-hover-color: var(--nav-hover-color);
+  --nav-mobile-current-color: var(--nav-current-color);
+
+  display: block;
+  contain: content;
 }
 
-x-navigation[layout='desktop'] .toggle {
+:host([mobile]) {
+  position: absolute;
+  top: var(--nav-mobile-top);
+  right: var(--nav-mobile-right);
+  bottom: var(--nav-mobile-bottom);
+  left: var(--nav-mobile-left);
+  z-index: 999;
+  transform: translateY(calc(-1 * var(--nav-toggle-height) / 2));
+}
+
+::slotted(x-navigation-item) {
+  display: inline-block;
+  contain: content;
+}
+
+:host([mobile]) ::slotted(x-navigation-item) {
+  display: block;
+  contain: content;
+}
+
+ul {
+  font-size: 0;
+  text-align: var(--nav-text-align);
+  padding: 0;
+  margin: 0;
+}
+
+.toggle {
   display: none;
 }
 
-x-navigation[layout='tablet'],
-x-navigation[layout='mobile'] {
-  --nav-min-width: 150px;
-  --icon-width: 30px;
-  --icon-height: 20px;
-  --line-height: 2px;
-
-  min-width: var(--nav-mobile-min-width, var(--nav-min-width));
-  position: absolute;
-  top: var(--nav-toggle-icon-top, 0);
-  right: 0;
+:host([mobile]) ul {
+  display: none;
 }
 
-x-navigation[layout='mobile'] {
-  --nav-min-width: 100%;
-
-  left: 0;
+:host([mobile][opened]) ul {
+  text-align: var(--nav-text-align);
+  display: inline-block;
+  min-width: var(--nav-mobile-min-width);
+  margin-top: 20px;
+  background-color: var(--nav-mobile-bg);
+  animation: fadeIn ease-in 0.5s;
 }
 
-x-navigation[layout='tablet'] .toggle,
-x-navigation[layout='mobile'] .toggle {
+:host([mobile]) .toggle {
   text-decoration: none;
   display: block;
-  width: var(--nav-toggle-icon-width, var(--icon-width));
-  height: var(--nav-toggle-icon-height, var(--icon-height));
-  position: absolute;
-  top: 0;
-  right: 0;
+  width: var(--nav-toggle-width);
+  height: var(--nav-toggle-height);
+  margin: var(--nav-toggle-margins);
+  position: relative;
 }
 
-x-navigation[layout='tablet'] .toggle:focus,
-x-navigation[layout='mobile'] .toggle:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 5px;
+:host([mobile]) .toggle:focus {
+  --nav-toggle-color: var(--nav-toggle-focus-color);
+
+  outline: none;
 }
 
 .line {
   display: block;
   width: 100%;
-  height: var(--nav-toggle-line-height, var(--line-height));
-  background: var(--color-primary, yellow);
+  height: var(--nav-toggle-line-height);
+  background: var(--nav-toggle-color, yellow);
   position: absolute;
   left: 0;
   transition: all 400ms;
@@ -58,30 +98,40 @@ x-navigation[layout='mobile'] .toggle:focus {
 
 .line-2 {
   top: 50%;
+  transform: translateY(-50%);
 }
 
 .line-3 {
-  top: 100%;
+  bottom: 0;
 }
 
-.toggle:hover .line-1,
-.toggle:focus .line-1 {
-  transform: translateY(calc(-1 * var(--nav-toggle-line-height, var(--line-height)) / 2));
+.toggle:hover .line-1 {
+  transform: translateY(calc(-1 * var(--nav-toggle-line-height) / 2));
 }
 
-.toggle:hover .line-3,
-.toggle:focus .line-3 {
-  transform: translateY(calc(var(--nav-toggle-line-height, var(--line-height)) / 2));
+.toggle:hover .line-3 {
+  transform: translateY(calc(var(--nav-toggle-line-height) / 2));
 }
 
-.toggle.active .line-1 {
-  transform: translateY(calc(var(--nav-toggle-icon-height, var(--icon-height)) / 2)) translateX(0) rotate(45deg);
+:host([mobile][opened]) .toggle .line-1 {
+  transform: translateY(calc(var(--nav-toggle-height) / 2)) translateX(0) rotate(45deg);
 }
 
-.toggle.active .line-2 {
+:host([mobile][opened]) .toggle .line-2 {
   opacity: 0;
 }
 
-.toggle.active .line-3 {
-  transform: translateY(calc(-1 * var(--nav-toggle-icon-height, var(--icon-height)) / 2)) translateX(0) rotate(-45deg);
+:host([mobile][opened]) .toggle .line-3 {
+  transform: translateY(calc(-1 * (var(--nav-toggle-height) / 2 - var(--nav-toggle-line-height)))) translateX(0)
+    rotate(-45deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

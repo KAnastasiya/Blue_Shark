@@ -1,30 +1,26 @@
 :host {
-  font-size: inherit;
+  --chart-min-size: 10em;
+  --chart-max-size: 20em;
+  --chart-color-fill: transparent;
+  --chart-full-color-stroke: #eee;
+  --chart-color-stroke: #95e1d3;
+  --chart-percent-color: #666;
+  --chart-title-color: #95e1d3;
+  --chart-title-margin-top: 0;
+
   text-transform: uppercase;
   text-align: center;
-  min-width: 100px;
-  max-width: 160px;
+  display: inline-block;
+  vertical-align: top;
+  min-width: var(--chart-min-size);
+  max-width: var(--chart-max-size);
+  contain: content;
 }
 
 .chart {
   display: inline-block;
   vertical-align: top;
   width: 100%;
-}
-
-.circle {
-  position: relative;
-}
-
-p {
-  color: var(--chart-title-color, yellow);
-  font-size: 1.7em;
-  font-weight: 400;
-  margin: 0;
-}
-
-p:not(:empty) {
-  margin-top: var(--chart-title-margin-top, 0);
 }
 
 svg {
@@ -37,18 +33,29 @@ circle {
 }
 
 circle:first-of-type {
-  fill: var(--chart-color-fill, transparent);
-  stroke: var(--chart-full-color-stroke, #eee);
+  fill: var(--chart-color-fill);
+  stroke: var(--chart-full-color-stroke);
 }
 
 circle:last-of-type {
   fill: transparent;
-  stroke: var(--chart-color-stroke, yellow);
+  stroke: var(--chart-color-stroke);
 }
 
 text {
-  fill: var(--chart-percent-color, #666);
+  fill: var(--chart-percent-color);
   font-family: inherit;
   font-size: 48px;
   font-weight: 100;
+}
+
+p {
+  color: var(--chart-title-color);
+  font-size: 1.7em;
+  font-weight: 400;
+  margin: 0;
+}
+
+p:not(:empty) {
+  margin-top: var(--chart-title-margin-top, 0);
 }
