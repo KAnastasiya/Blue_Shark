@@ -116,6 +116,8 @@ gulp.task('server', () => {
       baseDir: PUBLIC,
       index: 'index.html',
     },
+    https: true,
+    host: '192.168.1.39',
     port: 8800,
     open: false,
     reloadOnRestart: true,
