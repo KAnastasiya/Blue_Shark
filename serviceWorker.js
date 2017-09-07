@@ -1,27 +1,40 @@
 const CACHE_NAME = 'static';
-const urlsToCache = ['/', '/style.min.css', '/script.min.js', '/sprite.png', '/components', '/fonts', '/icons', '/img'];
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/style.min.css',
+  '/script.min.js',
+  '/components/',
+  '/fonts/',
+  '/icons/',
+  '/img/',
+  '/sprite.png',
+];
 
-self.addEventListener('install', event => {
+this.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Opened cache');
+      console.log('Save cache');
       return cache.addAll(urlsToCache);
     })
   );
 });
 
-// self.addEventListener('activate', event => {
-//   console.log('Opened cache');
-//   // Do activate stuff: This will come later on.
-// });
-
-// self.addEventListener('fetch', event => {
-//   event.respondWith(
-//     caches.match(event.request).then(response => {
-//       if (response) {
-//         return response;
-//       }
-//       return fetch(event.request);
-//     })
-//   );
-// });
+this.addEventListener('fetch', event => {
+  let response;
+  event.respondWith(
+    caches
+      .match(event.request)
+      .catch(() => fetch(event.request))
+      .then(r => {
+        console.log('Load data from server');
+        response = r;
+        caches.open(CACHE_NAME).then(cache => {
+          console.log('Update cache');
+          cache.put(event.request, response);
+        });
+        return response.clone();
+      })
+      .catch(() => caches.match('/img/'))
+  );
+});
