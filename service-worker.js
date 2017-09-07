@@ -3,19 +3,13 @@ const CACHE_NAME = 'blue-shark-v1';
 const urlsToCache = ['./', './index.html', './style.min.css', './script.min.js', './sprite.png'];
 
 this.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      console.log(`Create cache ${CACHE_NAME}`);
-      return cache.addAll(urlsToCache);
-    })
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)));
 });
 
 this.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
       if (response) {
-        console.log(`Load from cache: ${response.url}`);
         return response;
       }
 
@@ -25,7 +19,6 @@ this.addEventListener('fetch', event => {
           return r;
         }
 
-        console.log(`Load from server: ${r.url}`);
         const responseToCache = r.clone();
         caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseToCache));
         return r;

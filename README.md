@@ -1,9 +1,10 @@
 # Blue Shark
 
-Portfolio templates
+Portfolio templates for developers, designers and photographers.
 
-**Attention!** *In this project I use Web Components, Custom properties, Css Grid and others modern technologies. Thats why, unfortunately, now this site work only in Google Chrome and Opera :-(*
+This is the Progressive Web App, it means, that at smartphones with Android OS you can open this portfolio in browser or add icon on screen to open it as app.
 
+In others devices you open this site like others sites - in browsers. But, **remember**, now this site, unfortunately, work only in Google Chrome and Opera :-(. This is due to the fact that I use Web Components, Custom properties, Css Grid and others modern technologies.
 
 ### Installation
 
