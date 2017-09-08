@@ -1,4 +1,4 @@
-const CACHE_NAME = 'blue-shark-v1';
+const CACHE_NAME = 'blue-shark-v2';
 
 const urlsToCache = ['./', './index.html', './style.min.css', './script.min.js', './sprite.png'];
 
@@ -28,17 +28,16 @@ this.addEventListener('fetch', event => {
 });
 
 this.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
-
   event.waitUntil(
-    caches.keys().then(keyList =>
+    caches.keys().then(keys =>
       Promise.all(
-        keyList.map(key => {
-          if (cacheWhitelist.indexOf(key) === -1) {
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
             return caches.delete(key);
           }
         })
       )
     )
   );
+  return this.clients.claim();
 });

@@ -3,7 +3,7 @@
   "short_name": "BlueShark",
   "description": "A simply portfolio for designers, developers or others",
   "start_url": "./",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#1976d2",
   "background_color": "#1976d2",
   "icons": [
