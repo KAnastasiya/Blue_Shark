@@ -58,10 +58,10 @@
       this.constructor.selectItem(item);
     }
 
-    scroll() {
+    scroll(target) {
       const body = document.body;
       const position = this.constructor.getScrollPosition();
-      const targetOffset = document.querySelector(`#${event.target.getAttribute('value')}`).offsetTop;
+      const targetOffset = document.querySelector(`#${target.getAttribute('value')}`).offsetTop;
       const scrollTranslate = targetOffset > position ? `-${targetOffset - position}` : position - targetOffset;
 
       body.style.transition = 'transform 1000ms ease';
@@ -75,7 +75,7 @@
 
     onChange(event) {
       this.select(event.target);
-      this.scroll();
+      this.scroll(event.target);
     }
 
     onToggleClick() {
