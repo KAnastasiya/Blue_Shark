@@ -1,0 +1,53 @@
+.parallax {
+  $perspective: 300px;
+  $translateZ-back: -300px;
+
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: $perspective;
+
+  &__group {
+    height: 100vh;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    // transform: translate3d(700px, 0, -800px) rotateY(30deg); // Debug mode
+  }
+
+  &__layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &--base {
+      z-index: 2;
+      transform: translateZ(0);
+    }
+
+    &--back {
+      background: $contact-bg url(img/home/img/bg.jpg) no-repeat 0 0;
+      background-size: cover;
+      z-index: 1;
+      transform: translateZ($translateZ-back) scale(1.1 + ($translateZ-back * -1) / $perspective);
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: var(--page-scrollbar-width);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary--light);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    filter: opacity(0.2);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #eee;
+  }
+}

@@ -12,13 +12,7 @@ html {
 }
 
 body {
-  &.in-transition {
-    transition: transform 1000ms ease;
-  }
-}
-
-main {
-  position: relative;
+  overflow: hidden;
 }
 
 img {

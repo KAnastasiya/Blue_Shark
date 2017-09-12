@@ -16,6 +16,7 @@
     connectedCallback() {
       this.childTagName = 'x-navigation-item';
       this.maxMobileWidth = 1210; // px
+      this.sectionTopGap = 80; // px
       this.addEventListener('change', this.onChange);
 
       Promise.all([customElements.whenDefined(this.childTagName)]).then(() => {
@@ -26,9 +27,11 @@
       });
 
       this.shadowRoot.querySelector('.toggle').addEventListener('click', this.onToggleClick.bind(this));
-      window.addEventListener('scroll', this.constructor.debounce(this.onScroll.bind(this), 300));
-      window.addEventListener('resize', this.onResize.bind(this));
       document.addEventListener('click', this.onDocumentClick.bind(this));
+      window.addEventListener('resize', this.onResize.bind(this));
+      document
+        .querySelector('.parallax')
+        .addEventListener('scroll', this.constructor.debounce(this.onScroll.bind(this), 300));
     }
 
     disconnectedCallback() {
@@ -59,21 +62,22 @@
     }
 
     scroll(target) {
-      const body = document.body;
+      const page = document.querySelector('.parallax');
       const position = this.constructor.getScrollPosition();
       const targetOffset = document.querySelector(`#${target.getAttribute('value')}`).offsetTop;
       const scrollTranslate = targetOffset > position ? `-${targetOffset - position}` : position - targetOffset;
 
-      body.style.transition = 'transform 1000ms ease';
-      body.style.transform = `translate(0, ${scrollTranslate}px)`;
+      page.style.transform = `translate(0, ${scrollTranslate}px)`;
+      page.style.transition = 'transform 1000ms ease';
 
-      window.setTimeout(() => {
-        body.style.cssText = '';
-        window.scrollTo(0, targetOffset);
+      setTimeout(() => {
+        page.style.cssText = '';
+        page.scrollTo(0, targetOffset - this.sectionTopGap);
       }, 900);
     }
 
     onChange(event) {
+      this.hide();
       this.select(event.target);
       this.scroll(event.target);
     }
@@ -87,7 +91,10 @@
 
       const scrolled = this.items
         .map(item => item.getAttribute('value'))
-        .filter(item => document.querySelector(`#${item}`).offsetTop <= this.constructor.getScrollPosition());
+        .filter(
+          item =>
+            document.querySelector(`#${item}`).offsetTop - this.sectionTopGap <= this.constructor.getScrollPosition()
+        );
 
       const current = scrolled[scrolled.length - 1] || this.items[0].getAttribute('value');
 
@@ -147,16 +154,7 @@
     }
 
     static getScrollPosition() {
-      let position;
-      if (window.pageYOffset) {
-        position = window.pageYOffset;
-      } else if (document.documentElement && document.documentElement.scrollTop) {
-        position = document.documentElement.scrollTop;
-      } else if (document.body) {
-        position = document.body.scrollTop;
-      }
-
-      return Math.ceil(position);
+      return Math.ceil(document.querySelector('.parallax').scrollTop);
     }
 
     static debounce(func, wait, immediate) {
