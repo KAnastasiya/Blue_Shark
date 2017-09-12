@@ -41,10 +41,13 @@ html(lang='en')
     script(src='script.min.js')
   body
     include blocks/header/header
-    main
-      include blocks/home/home
-      include blocks/about/about
-      include blocks/skills/skills
-      include blocks/portfolio/portfolio
-      include blocks/contact/contact
-    include blocks/footer/footer
+    .parallax
+      .parallax__layer.parallax__layer--base
+        main
+            include blocks/home/home
+            include blocks/about/about
+            include blocks/skills/skills
+            include blocks/portfolio/portfolio
+            include blocks/contact/contact
+        include blocks/footer/footer
+      .parallax__layer.parallax__layer--back

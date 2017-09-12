@@ -1,15 +1,6 @@
 .home {
-  height: 95vh;
-  background-color: $contact-bg;
-  background-image: url(img/home/img/bg.jpg);
-  background-repeat: no-repeat;
-  background-position: -120px 0;
-  background-size: cover;
+  height: 100vh;
   position: relative;
-
-  @media #{$desktop--sm} {
-    background-position: 0 0;
-  }
 
   &__content {
     @include font-size(20px, 25px);
@@ -63,6 +54,7 @@
 
     bottom: 30px;
     left: 50%;
+    z-index: 999;
     transform: translateX(-50%);
   }
 }

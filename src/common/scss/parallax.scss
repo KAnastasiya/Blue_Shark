@@ -1,0 +1,29 @@
+.parallax {
+  $perspective: 1px;
+  $translateZ: -1 * $perspective;
+
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 1px;
+
+  &__layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__layer--base {
+    z-index: 2;
+    transform: translateZ(0);
+  }
+
+  &__layer--back {
+    background: $contact-bg url(img/home/img/bg.jpg) no-repeat 0 0;
+    background-size: cover;
+    z-index: 1;
+    transform: translateZ($translateZ) scale(1.1 + ($translateZ * -1) / $perspective);
+  }
+}
