@@ -2,9 +2,13 @@
   @extend %grid;
 
   grid-column: span 4;
-  width: 100%;
-  position: absolute;
+  width: calc(100% - var(--page-scrollbar-width));
+  height: var(--header-height);
+  background-color: var(--header-bg);
+  box-shadow: var(--header-shadow);
+  position: fixed;
   z-index: 999;
+  transition: all 500ms ease;
 
   @media #{$desktop--xs} {
     grid-column: span 6;
@@ -18,28 +22,24 @@
       @include font-size(30px);
 
       font-family: Allema;
-      line-height: $header-height;
+      line-height: var(--header-height);
       white-space: nowrap;
       margin: 0;
 
       @media #{$desktop--xs} {
         @include font-size(39px);
 
-        line-height: $header-height;
-      }
-
-      span {
-        color: $color-white;
+        line-height: var(--header-height);
       }
     }
   }
 
   &__nav {
-    color: $color-white;
-    line-height: $header-height;
+    color: var(--color-white);
+    line-height: var(--header-height);
     text-align: right;
     grid-column: 3/4;
-    height: $header-height;
+    height: var(--header-height);
     position: relative;
 
     @media #{$desktop--xs} {
@@ -47,16 +47,14 @@
     }
 
     x-navigation {
-      --nav-font-color: $color-white;
-      --nav-current-color: var(--color-primary);
       --nav-current-border-width: 0;
       --nav-mobile-top: 50%;
       --nav-mobile-right: 0;
       --nav-mobile-left: initial;
-      --nav-toggle-margins: 0 0 0 auto;
-      --nav-mobile-bg: $color-white;
-      --nav-mobile-font-color: $font-color;
+      --nav-toggle-margins: 0 0 10px auto;
       --nav-toggle-color: var(--color-primary);
+      --nav-mobile-font-color: $font-color;
+      --nav-current-color: var(--color-primary);
     }
   }
 }

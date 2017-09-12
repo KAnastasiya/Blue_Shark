@@ -1,12 +1,8 @@
-$color-white: #fff;
-
-$font-color: #333030;
+$font-color: var(--color-gray);
 $font-size: 14px;
 $line-height: 1.7;
 
-$header-height: 135px;
-
-$page-bg: $color-white;
+$page-bg: var(--color-white);
 $portfolio-card-bg: #ededed;
 $contact-bg: #484646;
 $skills-bg: #ececec;
@@ -26,6 +22,10 @@ $desktop--lg: (min-width: $bp-desktop--lg);
 
 :root {
   --color-primary: #1976d2;
+  --color-primary--light: #64b5f6;
+  --color-white: #fff;
+  --color-gray: #333030;
+  --page-scrollbar-width: 10px;
   --nav-active-border-width: 0;
   --nav-toggle-icon-top: 60px;
   --nav-toggle-icon-width: 35px;
