@@ -40,9 +40,11 @@ html(lang='en')
     link(rel='stylesheet', href='style.min.css')
     script(src='script.min.js')
   body
-    include blocks/home/home
-    include blocks/about/about
-    include blocks/skills/skills
-    include blocks/portfolio/portfolio
-    include blocks/contact/contact
+    include blocks/header/header
+    main
+      include blocks/home/home
+      include blocks/about/about
+      include blocks/skills/skills
+      include blocks/portfolio/portfolio
+      include blocks/contact/contact
     include blocks/footer/footer

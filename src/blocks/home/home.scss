@@ -1,4 +1,5 @@
 .home {
+  height: 95vh;
   background-color: $contact-bg;
   background-image: url(img/home/img/bg.jpg);
   background-repeat: no-repeat;
@@ -7,7 +8,6 @@
   position: relative;
 
   @media #{$desktop--sm} {
-    min-height: 95vh;
     background-position: 0 0;
   }
 
@@ -17,8 +17,11 @@
     display: flex;
     justify-content: center;
     grid-column: 2/4;
-    padding-top: 8rem;
-    padding-bottom: 14rem;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     @media #{$desktop--xs} {
       @include font-size(48px, 54px);
@@ -28,7 +31,7 @@
     }
   }
 
-  &__content-wrapper {
+  &__content-container {
     text-align: center;
 
     @media #{$desktop--xs} {
@@ -63,5 +66,3 @@
     transform: translateX(-50%);
   }
 }
-
-@import '../header/header';

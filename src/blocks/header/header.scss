@@ -2,6 +2,9 @@
   @extend %grid;
 
   grid-column: span 4;
+  width: 100%;
+  position: absolute;
+  z-index: 999;
 
   @media #{$desktop--xs} {
     grid-column: span 6;
@@ -35,8 +38,8 @@
     color: $color-white;
     line-height: $header-height;
     text-align: right;
-    height: $header-height;
     grid-column: 3/4;
+    height: $header-height;
     position: relative;
 
     @media #{$desktop--xs} {
