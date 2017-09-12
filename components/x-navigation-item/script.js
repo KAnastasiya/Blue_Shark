@@ -43,7 +43,7 @@
       this.selected = !!this.selected;
     }
 
-    onClick() {
+    onClick(event) {
       event.preventDefault();
 
       if (!this.selected) {
